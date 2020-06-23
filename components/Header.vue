@@ -2,18 +2,18 @@
 <div class="header-container">
     <header class="header">
         <div class="logo">
-           <nuxt-link to="/"> <img src="~/assets/img/llacan-navbar.svg" alt /></nuxt-link>
+           <nuxt-link to="/restaurants"> <img src="~/assets/img/llacan-navbar.svg" alt /></nuxt-link>
            
         </div>
          <div class="addition" :class="{'hidden': this.$route.name.includes('index')}">
             <div class="addition__left u-flex u-flex-fd--r">
                 
                 <div class="user"> <img class="addition-left__user"> </div>
-            <p class="addition-left__paragraf">{{userName}}</p>
+            <p class="addition-left__paragraf">{{name}}</p>
             
             </div>
             <div class="addition__right">
-                <nuxt-link to="/"><p class="addition-right__paragraf">Odjavi se</p></nuxt-link>
+                <button @click = "logOut"><p class="addition-right__paragraf">Odjavi se</p></button>
                  
             </div>
         </div>
@@ -23,17 +23,25 @@
 
 <script>
 export default {
-    computed: {
-        
+    computed:{
+        name() {
+            if(this.$auth.loggedIn) return this.$auth.user.name;
+            else return "User";
+        }
     },
-    created() {
-        if(this.$auth.user.name) this.userName = this.$auth.user.name;
-        else this.userName = "User";
-    },
+    methods:{
+        logOut(){
+            this.$auth.logout()
+        }
+    }
 }
 </script>
 
 <style scoped>
+button{
+    background-color: #070707;
+    box-shadow: 0;
+}
 
 .header-container{
     height:100px;

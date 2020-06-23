@@ -67,8 +67,8 @@
 export default {
   data() {
     return {
-      email: 'dina@lloyds.design',
-      password: 'din123',
+      email: '',
+      password: '',
       modalForget: false
     }
   },
@@ -81,13 +81,11 @@ export default {
             password: this.password
           }
         })
-
-        // const responseX = await this.$axios.get(process.env.baseApiUrl)
-        // console.log(responseX);
         
       } catch (err) {
         alert('Something went wrong! :(')
-        console.log(err)
+        console.log("HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+        console.log(err.response)
       }
     }
   }

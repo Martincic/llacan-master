@@ -57,8 +57,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    // baseURL:'http://192.168.10.74/llacan/public/api/'
-
+    baseURL:'http://192.168.10.74/llacan/public/api/'
   },
   auth: {
     redirect: { login: '/', logout: '/', home: "/restaurants" },

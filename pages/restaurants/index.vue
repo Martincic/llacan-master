@@ -16,7 +16,7 @@
      
     
 
-    <div class="restaurants__list u-flex  u-flex-jc--sb u-flex-fw--w" v-else>
+    <div class="restaurants__list u-flex u-flex-jc--sb u-flex-fw--w u-flex-fd--r" v-else>
       <SingleRestaurant v-for="restaurant in restaurants" :key="restaurant.id" :restaurantInfo="restaurant" />
     </div>
     
@@ -94,10 +94,13 @@ export default {
     CollapseTransition 
   },
   created(){
-    this.$axios.get(process.env.baseApiUrl + 'restaurants').then(res =>{
-      this.restaurants= res.data.data
-      this.isLoading=false
-    
+      this.$axios.get(process.env.baseApiUrl + 'restaurants').then(res =>{
+        this.restaurants= res.data.data
+        this.isLoading=false
+    }).catch(err => {
+      
+        this.$router.push({name:'index'})
+        console.log( err)
     })
 
 
