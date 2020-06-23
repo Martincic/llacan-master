@@ -1,0 +1,59 @@
+@import 'modularscale/vars';
+@import 'modularscale/settings';
+@import 'modularscale/pow';
+@import 'modularscale/strip-units';
+@import 'modularscale/round-px';
+@import 'modularscale/function';
+@import 'modularscale/respond';
+
+// $ff-sans: 'TT Norms', sans-serif;
+// $ff-serif: Times, serif;
+
+@font-face {
+	font-family: TTNorms;
+	src: url('/fonts/TTNorms-Bold.otf');
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: TTNorms;
+	src: url('/fonts/TTNorms-Light.otf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: TTNorms;
+	src: url('/fonts/TTNorms-Medium.otf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: TTNorms;
+	src: url('/fonts/TTNorms-Regular.otf');
+	font-weight: 400;
+}
+
+
+$ff-sans: 'TTNorms', sans-serif;
+$ff-serif: 'TTNorms', serif;
+
+
+// Font weights
+$fw-light: 300;
+$fw-normal: 400;
+$fw-bold: 700;
+
+$modularscale: (
+	base: 16px,
+	400px: (
+		base: 14px,
+		ratio: 1.2
+	),
+	900px: (
+		base: 16px,
+		ratio: 1.3
+	),
+	1600px: (
+		ratio: 1.5
+	)
+);

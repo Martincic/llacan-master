@@ -1,0 +1,2 @@
+# Llacan nuxt
+ Llacan frontend

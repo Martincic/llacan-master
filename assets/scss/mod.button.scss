@@ -1,0 +1,45 @@
+.btn {
+	/**
+    * Button base
+    */
+	display: inline-block;
+	vertical-align: middle;
+	touch-action: manipulation;
+	user-select: none;
+	cursor: pointer;
+	white-space: nowrap;
+	text-decoration: none;
+	text-align: center;
+	border: 0;
+	background: transparent;
+	transition: all 0.15s ease-in-out;
+	&:focus {
+		outline: 0;
+	}
+
+	&--primary {
+		background: #FFFFFF;
+		border: 1px solid #070707;
+		box-sizing: border-box;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 24px;
+		width: 153px;
+		height: 44px;
+		padding-top: 8px;
+	}
+
+	&--secondary {
+		background: #FBDE07;
+		box-shadow: 0px 0px 6px rgba(251, 222, 7, 0.4);
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 24px;
+		width: 186px;
+		height: 44px;
+		margin-right: 42px;
+		padding-top: 10px;
+	}
+}
