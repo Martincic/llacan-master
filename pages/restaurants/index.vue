@@ -43,7 +43,6 @@
         
         <div class="footer-components__center ptb-xs">
             <p @click="openFooter">Aktivne narudžbe (2)</p>
-           
         </div>
       
     </div>

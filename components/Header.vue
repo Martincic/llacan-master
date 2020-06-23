@@ -9,7 +9,7 @@
             <div class="addition__left u-flex u-flex-fd--r">
                 
                 <div class="user"> <img class="addition-left__user"> </div>
-            <p class="addition-left__paragraf">{{this.$auth.user.name}}</p>
+            <p class="addition-left__paragraf">{{userName}}</p>
             
             </div>
             <div class="addition__right">
@@ -21,19 +21,29 @@
     </div>
 </template>
 
+<script>
+export default {
+    computed: {
+        
+    },
+    created() {
+        if(this.$auth.user.name) this.userName = this.$auth.user.name;
+        else this.userName = "User";
+    },
+}
+</script>
+
 <style scoped>
 
 .header-container{
     height:100px;
 }
 
-/* .header{
-    
+.header{
     background-color: #070707;
     position: absolute;
-    
     width: 100%;
-} */
+} 
 
 .header{
     width: 100%;
