@@ -97,13 +97,10 @@ export default {
       this.$axios.get(process.env.baseApiUrl + 'restaurants').then(res =>{
         this.restaurants= res.data.data
         this.isLoading=false
-    }).catch(err => {
-      
+    }).catch(err => {  
         this.$router.push({name:'index'})
         console.log( err)
     })
-
-
   },
   methods:{
         openFooter(){

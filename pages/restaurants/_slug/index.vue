@@ -10,18 +10,10 @@
                     
                 <div class="menu-info-left__info">
                     <h1 class="restaurant-title">{{restaurantInfo.title}}</h1>
-        
                     <p class="restaurant-adress"><span class="icon-home-icon"></span>{{restaurantInfo.address}}</p>
                     <p class="restaurant-number"><span class="icon-phone-icon"></span>{{restaurantInfo.phone}}</p>
 
                 </div>
-                
-
-               
-                
-                
-
-
             </div>
             
         </diV>
@@ -211,10 +203,14 @@ export default {
     },
 
    created(){
+    if(!this.$auth.loggedIn) this.$router.push({name:'index'})
+
     this.$axios.get(process.env.baseApiUrl + 'restaurants/' + this.$route.params.slug ).then(res =>{
-      this.restaurantInfo= res.data.data
-      this.isLoading=false
-    
+    this.restaurantInfo= res.data.data
+    this.isLoading=false
+    }).catch(err => {  
+        this.$router.push({name:'index'})
+        console.log( err)
     })
   },
   computed:{
