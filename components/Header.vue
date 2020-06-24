@@ -13,7 +13,7 @@
             
             </div>
             <div class="addition__right">
-                <button @click = "logOut"><p class="addition-right__paragraf">Odjavi se</p></button>
+                <nuxt-link to="/"><button class="btn-none" @click = "logOut"><p class="addition-right__paragraf">Odjavi se</p></button></nuxt-link>
                  
             </div>
         </div>
@@ -38,9 +38,12 @@ export default {
 </script>
 
 <style scoped>
-button{
+.btn-none {
+    border:0;
     background-color: #070707;
-    box-shadow: 0;
+}
+.btn-none:hover{
+    cursor: pointer;
 }
 
 .header-container{
