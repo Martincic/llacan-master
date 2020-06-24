@@ -13,7 +13,7 @@
             
             </div>
             <div class="addition__right">
-                <button @click = "logOut"><p class="addition-right__paragraf">Odjavi se</p></button>
+                <nuxt-link to="/" @click = "logOut"><p class="addition-right__paragraf">Odjavi se</p></nuxt-link>
                  
             </div>
         </div>
