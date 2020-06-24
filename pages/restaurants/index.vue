@@ -2,8 +2,10 @@
 
   <section>
     <div class="restaurants u-flex u-flex-fd--c mlr-xxl">
-      <div class="restaurants__user  fs-lg pb-lg u-flex u-flex-fd--r">
-        <div class="first__left">{{name}}, odaberite željeni restoran</div>
+      <div class="restaurants__user  fs-lg pb-lg u-flex u-flex-fd--r u-flex-jc--sb size1of1">
+        <div class="first__left">
+          {{name}}, odaberite željeni restoran
+        </div>
         <div class="first__right u-flex u-flex-jc-fe">
           <nuxt-link to="/history/"> <button class="btn order btn_last"> <span class="icon-new-history"></span>Prošle
               narudžbe</button></nuxt-link>
@@ -29,11 +31,15 @@
       <collapse-transition>
         <div v-show="showFooter">
           <div class="hiddenOrders u-flex u-flex-fd--c u-flex-jc--c u-flex-ai--c ">
-            <div class=" hiddenOtrders__singleRestaurant u-flex u-flex-fd--r u-flex-jc--sb">
+            <div class=" hiddenOtrders__singleRestaurant u-flex u-flex-fd--r u-flex-jc--sb" v-for="(order, i) in activeOrders" :key="i">
               <div class="hiddenOtrders-singleRestaurant__restaurantTime u-flex u-flex-fd--r pl-xs ">
-                <p class="hiddenOtrders-singleRestaurant-restaurantTime__title font-normal-bold fs-md pt-xs">Fast Food
-                  Forever</p>
-                <p class="hiddenOtrders-singleRestaurant-restaurantTime__paragraf pt-xs ">(otvorio - User 09:42)</p>
+                <p class="hiddenOtrders-singleRestaurant-restaurantTime__title font-normal-bold fs-md pt-xs">
+                  {{order.restaurant}}
+                  </p>
+                <p class="hiddenOtrders-singleRestaurant-restaurantTime__paragraf pt-xs mt-5px">
+                  (otvorio - {{order.user_name.split(' ')[0]}}
+                  {{ order.created_at | moment }})
+                </p>
               </div>
               <div class="hiddenOtrders-singleRestaurant__join ">
                 <button class="btn btn-join ptb-xs ">Pridruži se</button>
@@ -52,6 +58,8 @@
   import {
     CollapseTransition
   } from 'vue2-transitions';
+  import moment from 'moment'
+  
   export default {
 
     data() {
@@ -108,8 +116,12 @@
           else return "User";
         },
       ordersInfo() {
-        if(true) return "Aktivne narudžbe ("+ this.activeOrders.length +")";
-        else return "YAY";
+        return "Aktivne narudžbe ("+ this.activeOrders.length +")";
+      },
+    },
+    filters: {
+      moment: function (date) {
+        return moment(date).format('HH:mm');
       }
     }
   }
@@ -117,12 +129,12 @@
 </script>
 
 <style scoped lang="scss">
+  .mt-5px{
+    margin-top:5px;
+  }
   .restaurants {
     position: relative;
     padding-top: 180px;
-    // margin: 0 auto;
-    // width: 1440px;
-
   }
 
   .restaurants__user {
@@ -150,12 +162,7 @@
     padding-bottom: 96px;
   }
 
-  .btn_last {
-    margin-left: 54%;
-  }
-
   button.btn.order {
-    position: absolute;
     border: 1px solid #070707;
     box-sizing: border-box;
     background: $tertiary-color;
@@ -207,7 +214,7 @@
     border: 1px solid $primary-color;
     background-color: $primary-color;
     bottom: 0px;
-    height: 100px;
+    height: 100%;
   }
 
   .footer-components__center {
