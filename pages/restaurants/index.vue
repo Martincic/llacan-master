@@ -18,27 +18,11 @@
 
     </div>
 
-    <!-- <div class="footer">
-      
-        <BottomNavToggle @toggle="$emit('bottomNavToggle')" />
-
-      
-          <div class="footer-components  u-flex u-flex-jc--c mlr-xxl mt-sm ">
-        <div class="footer-components__center ptb-xs">
-            <p>Aktivne narudžbe (2)</p>
-        </div>
-        
-    </div>
-      
-    </div> -->
-    <!-- proba -->
-
-
     <div class="footer">
       <div class="footer-components  u-flex u-flex-jc--c u-flex-ai--c mlr-xxl mt-sm ">
 
         <div class="footer-components__center ptb-xs">
-          <p @click="openFooter">Aktivne narudžbe (2)</p>
+          <p @click="openFooter">{{ordersInfo}}</p>
         </div>
 
       </div>
@@ -73,8 +57,11 @@
     data() {
       return {
         restaurants: [],
+        activeOrders: [],
         isLoading: true,
-        showFooter: false
+        showFooter: false,
+        loading1: true,
+        loading2: true,
       }
     },
     components: {
@@ -83,15 +70,31 @@
       CollapseTransition
     },
     created() {
+      // Restorani
       this.$axios.get(process.env.baseApiUrl + 'restaurants').then(res => {
         this.restaurants = res.data.data
-        this.isLoading = false
+        this.loading1 = false
+        if(!this.loading1 && !this.loading2) this.isLoading = false;
       }).catch(err => {
         this.$router.push({
           name: 'index'
         })
         console.log(err)
       })
+
+    // Aktivne narudzbe
+    this.$axios.get(process.env.baseApiUrl + 'orders').then(res => {
+        this.activeOrders = res.data.data
+        this.loading2 = false
+        if(!this.loading1 && !this.loading2) this.isLoading = false;
+      }).catch(err => {
+        this.$router.push({
+          name: 'index'
+        })
+        console.log(err)
+      })
+
+      if(!this.loading1 && !this.loading2) this.isLoading = false;
     },
     methods: {
       openFooter() {
@@ -101,9 +104,13 @@
     },
     computed: {
       name() {
-            if(this.$auth.loggedIn) return this.$auth.user.name;
-            else return "User";
-        }
+          if(this.$auth.loggedIn) return this.$auth.user.name;
+          else return "User";
+        },
+      ordersInfo() {
+        if(true) return "Aktivne narudžbe ("+ this.activeOrders.length +")";
+        else return "YAY";
+      }
     }
   }
 
