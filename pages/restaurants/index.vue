@@ -145,6 +145,9 @@ export default {
 
     .restaurants__list{
       padding-bottom: 96px;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:24px;
     }
     .btn_last{
       margin-left:54%;
