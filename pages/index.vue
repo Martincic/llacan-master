@@ -4,8 +4,8 @@
       <div class="llacan__left">
         <p class="llacan-left__title fs-xxl">
           S ovom aplikacijom nikad nećeš ostati
-          <span class="special">
-            l
+          <span class="u-flex--if">
+            <span class="special"> l </span>
             <span class="special1">lačan</span>
           </span>
           <img class="llacan-left__logo" src="~/assets/img/lloyds-logo.svg" />
