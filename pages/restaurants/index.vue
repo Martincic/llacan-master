@@ -162,6 +162,20 @@
     padding-bottom: 96px;
   }
 
+<<<<<<< HEAD
+=======
+  .restaurants__list{
+    padding-bottom: 96px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:24px;
+  }
+  .btn_last{
+    margin-left:54%;
+  }
+
+
+>>>>>>> 0313a36b57f5f380453ff31ec6509d0d4ea21a39
   button.btn.order {
     border: 1px solid #070707;
     box-sizing: border-box;
