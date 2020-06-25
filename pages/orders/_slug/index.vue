@@ -451,25 +451,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD:pages/restaurants/_slug/order.vue
-import { CollapseTransition } from 'vue2-transitions'
-// import Vue from 'vue';
-export default {
-  components: {
-    CollapseTransition
-  },
-  data() {
-    return {
-      modalOpened: false,
-      showOpen: false,
-      modalSend: false,
-      modalAccept: false
-    }
-  },
-  methods: {
-    openChoice() {
-      this.showOpen = !this.showOpen
-=======
 import { CollapseTransition } from 'vue2-transitions';
 // import Axios from '@nuxtjs/axios';
 // import Vue from 'vue';
@@ -496,10 +477,8 @@ export default {
             console.log(order)
             return { order }
         },
->>>>>>> 8dd3776a26e5620387be82304780c95b0d87d696:pages/orders/_slug/index.vue
     }
   }
-}
 </script>
 
 <style scoped lang="scss">
