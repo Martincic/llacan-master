@@ -41,6 +41,48 @@
               <img />
               <p class="user-name fs-base font-normal-sm  ">User</p>
             </div>
+            <div class="choice u-flex u-flex-fd--c">
+                <div class="my-choice u-flex u-flex-fd--c border-box">
+                    <div class="my_choice__information u-flex u-flex-fd-r u-flex-jc--sb  ptb-sm">
+                    <div class="my-choice__text pl-sm ">
+                        <h1 class="my-choice__title fs-md font-normal-bold">Moj odabir</h1>
+                    </div>
+                    <div class="my-choice__button pr-sm">
+                        
+                        <button class=" btn btn-button btn-select fs-base font-normal-sm-n" @click="modalOpened = true">Odaberi za sebe</button>
+                        
+                      
+                    </div>
+                    </div>
+                    <div class="my-choice__uniqueUser u-flex u-flex-fd--r u-flex-jc--sb border-box">
+                         <div class="my-choice-orders__user pb-sm pl-sm">
+                        <img>
+                        <p class="user-name fs-base font-normal-sm  ">User{{asyncData}}</p>
+                    </div>
+                    
+                    <div class="my-choice-orders__food pl-lg">
+                        <h1 class="food__name fs-base font-normal-medium">Hamburger</h1>
+                        <p class="food__condements fs-sm font-normal-small">kečap, majoneza, rajčica</p>
+                     </div>
+                    <div class="my-choice-information__price fs-base font-normal-medium"> 
+                        <p>22,00 kn</p>
+
+                    </div>
+                    <div class="my-choice-information__delete pr-sm">
+                        
+                        <button class="btn  "><img class="share" src="~/assets/img/Izbrisi.svg" /></button>
+
+                    </div>
+
+                    </div>
+
+                </div>
+
+                <div class="my-choice__orders u-flex-fd-c border-box">
+                    <div class="my-choice-orders__others ptb-sm pl-sm">
+                        <h1>Ostali (1)</h1>
+                    </div>
+                    <div class="my-choice-orders__allOrders u-flex u-flex-fd--r u-flex-jc--sb border-box">
 
             <div class="my-choice-orders__food pl-lg">
               <h1 class="food__name fs-base font-normal-medium">Hamburger</h1>
@@ -409,6 +451,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD:pages/restaurants/_slug/order.vue
 import { CollapseTransition } from 'vue2-transitions'
 // import Vue from 'vue';
 export default {
@@ -426,6 +469,34 @@ export default {
   methods: {
     openChoice() {
       this.showOpen = !this.showOpen
+=======
+import { CollapseTransition } from 'vue2-transitions';
+// import Axios from '@nuxtjs/axios';
+// import Vue from 'vue';
+export default {
+    components:{
+         CollapseTransition 
+    },
+    data(){
+        return{
+            modalOpened:false,
+            showOpen: false,
+            modalSend: false,
+            modalAccept: false
+        }
+    },
+    methods: {
+        openChoice(){
+            this.showOpen = !this.showOpen
+        },
+    },
+    computed: {
+        async asyncData({ $axios }) {
+            const order = await $axios.$get(process.env.baseApiUrl + `orders/${this.$route.params.slug}`)
+            console.log(order)
+            return { order }
+        },
+>>>>>>> 8dd3776a26e5620387be82304780c95b0d87d696:pages/orders/_slug/index.vue
     }
   }
 }
