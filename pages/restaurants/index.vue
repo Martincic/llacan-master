@@ -34,7 +34,7 @@
             <div class=" hiddenOtrders__singleRestaurant u-flex u-flex-fd--r u-flex-jc--sb" v-for="(order, i) in activeOrders" :key="i">
               <div class="hiddenOtrders-singleRestaurant__restaurantTime u-flex u-flex-fd--r pl-xs ">
                 <p class="hiddenOtrders-singleRestaurant-restaurantTime__title font-normal-bold fs-md pt-xs">
-                  {{order.restaurant}}
+                  {{order.restaurant.title}}&nbsp;
                   </p>
                 <p class="hiddenOtrders-singleRestaurant-restaurantTime__paragraf pt-xs mt-5px">
                   (otvorio - {{order.user_name.split(' ')[0]}}
@@ -42,7 +42,8 @@
                 </p>
               </div>
               <div class="hiddenOtrders-singleRestaurant__join ">
-                <button class="btn btn-join ptb-xs ">Pridruži se</button>
+                <!-- <nuxt-link :to="'orders/' + order.slug" class="btn btn-join ptb-xs ">Pridruži se</nuxt-link> -->
+                <nuxt-link :to="`orders/${order.slug}`" class="btn btn-join ptb-xs ">Pridruži se</nuxt-link>
               </div>
             </div>
           </div>

@@ -28,7 +28,7 @@
                     <div class="my-choice__uniqueUser u-flex u-flex-fd--r u-flex-jc--sb border-box">
                          <div class="my-choice-orders__user pb-sm pl-sm">
                         <img>
-                        <p class="user-name fs-base font-normal-sm  ">User</p>
+                        <p class="user-name fs-base font-normal-sm  ">User{{asyncData}}</p>
                     </div>
                     
                     <div class="my-choice-orders__food pl-lg">
@@ -336,6 +336,7 @@
 
 <script>
 import { CollapseTransition } from 'vue2-transitions';
+// import Axios from '@nuxtjs/axios';
 // import Vue from 'vue';
 export default {
     components:{
@@ -352,7 +353,14 @@ export default {
     methods: {
         openChoice(){
             this.showOpen = !this.showOpen
-        }
+        },
+    },
+    computed: {
+        async asyncData({ $axios }) {
+            const order = await $axios.$get(process.env.baseApiUrl + `orders/${this.$route.params.slug}`)
+            console.log(order)
+            return { order }
+        },
     }
 }
 </script>
