@@ -84,7 +84,6 @@ export default {
         
       } catch (err) {
         alert('Something went wrong! :(')
-        console.log("HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
         console.log(err.response)
       }
     }
@@ -96,13 +95,8 @@ export default {
 .llacan {
   background-color: $primary-color;
   width: 100%;
-  // height: 100vh;
-  //  height: 1100px;
   margin: 0 auto;
-  // height: 924px;
-  // height:auto;
-  // height:880px;
-  height: auto;
+  height: calc(100vh - 100px);
 }
 
 .llacan__left {
@@ -110,11 +104,8 @@ export default {
   width: 50%;
   margin-left: 15%;
   height: 90%;
-  // padding-bottom: 100px;
-  // margin-bottom: 129px;
   position: relative;
   padding-bottom: 300px;
-
   padding-top: 40px;
 }
 

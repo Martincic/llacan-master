@@ -225,7 +225,6 @@
     border: 1px solid $primary-color;
     background-color: $primary-color;
     bottom: 0px;
-    height: 100%;
   }
 
   .footer-components__center {
