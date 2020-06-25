@@ -189,8 +189,48 @@
               <button class="btn btn-button btn-send fs-base font-normal-sm-n" @click="modalSend = true">Pošalji
                 narudžbu</button>
             </div>
-
           </div>
+        </div>
+
+        <div
+          class="sendOrder border-box u-flex u-flex-fd--r u-flex-jc--sb ptb-md"
+        >
+          <div
+            class="sendOrder__information u-flex  u-flex-fd--r u-flex-jc--sb"
+          >
+            <div class="sendOrder-information__restaurant pl-sm">
+              <h1>Fast Food Forever</h1>
+            </div>
+            <div class="sendOrder-information__number">
+              <p class="hover-text__number fs-base font-normal-sm-n">
+                <span class="icon-phone-icon "></span>092-246-0606
+              </p>
+            </div>
+          </div>
+          <div
+            class="sendOrder__buttons u-flex  u-flex-fd--r u-flex-jc--sb border box pr-sm"
+          >
+            <div class="sendOrder-buttons__cancel">
+              <nuxt-link to="/restaurants/">
+                <button
+                  class="btn btn-button btn-cancel fs-base font-normal-sm-n"
+                >
+                  Otkaži narudžbu
+                </button>
+              </nuxt-link>
+            </div>
+            <div class="sendOrder-buttons__send pl-sm">
+              <button
+                class="btn btn-button btn-send fs-base font-normal-sm-n"
+                @click="modalSend = true"
+              >
+                Pošalji narudžbu
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
         </div>
       </div>
@@ -213,7 +253,6 @@
       </div>
 
     </div>
-
 
     <section class="modal" v-if="modalOpened">
       <div class="overlay__selectFood font-normaln-bold fs-lg pl-md u-flex u-flex-fd--r u-flex-jc--sb mt-sm mb-md">
@@ -273,6 +312,7 @@
                 <p class="proba2">As many as you need to wash you out from my mind and out of my consciousness.</p>
                 <p class="proba2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
             </div> -->
+      </div>
 
       </div>
 
@@ -295,6 +335,26 @@
           <p>Jeste li sigurni da želite potvrditi narudžbu? Dodatna izmjena </p>
           <p>narudžbe neće biti moguća!</p>
         </div>
+        <div
+          class="modal-send-information__warn u-flex u-flex-jc--c u-flex-ai--c pb-xs"
+        >
+          <img
+            class="share pl-xs pt-xs"
+            src="~/assets/img/yellowRectangle.jpg"
+          />
+        </div>
+        <div
+          class="modal-send-information__title u-flex u-flex-jc--c u-flex-ai--c ptb-xs"
+        >
+          <h3>Potvrdi narudžbu?</h3>
+        </div>
+        <div
+          class="modal-send-information__paragraf u-flex u-flex-jc--c u-flex-ai--c mlr-lg u-flex-fd--c"
+        >
+          <p>Jeste li sigurni da želite potvrditi narudžbu? Dodatna izmjena</p>
+          <p>narudžbe neće biti moguća!</p>
+        </div>
+      </div>
 
       </div>
 
@@ -310,8 +370,16 @@
           <button class="btn btn-button btn-send btn-send-padding fs-base font-normal-sm-n"
             @click="modalAccept = true">Pošalji narudžbu</button>
 
+        <div class="model-send-buttons__accept pl-md">
+          <button
+            class="btn btn-button btn-send btn-send-padding fs-base font-normal-sm-n"
+            @click="modalAccept = true"
+          >
+            Pošalji narudžbu
+          </button>
         </div>
 
+      </div>
       </div>
 
     </section>
@@ -383,10 +451,7 @@
       }
     }
   }
-
 </script>
-
-
 
 <style scoped lang="scss">
   //proba
@@ -489,6 +554,12 @@
     line-height: 28px;
   }
 
+.hover-text__adress,
+.hover-text__number {
+  font-style: normal;
+  font-weight: normal;
+  line-height: 28px;
+}
 
 
 
