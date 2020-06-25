@@ -14,7 +14,7 @@
                 <span class="icon-home-icon"></span>{{ restaurantData.address }}
               </p>
               <p class="restaurant-number">
-                <span class="icon-phone-icon"></span>{{ restaurantData.phone }}
+                <span class="icon-phone-icon"></span>+{{ restaurantData.phone }}
               </p>
             </div>
           </div>
@@ -43,7 +43,7 @@
           </div>
           <div class="condements__paragraf fs-base">
             <p>
-              {{ condementsData.map(e => e.name.toLowerCase()).join(', ') }}
+              {{ allCodemenets }}
             </p>
           </div>
         </div>
@@ -161,7 +161,6 @@ export default {
   data() {
     return {
       restaurantData: [],
-      condementsData: [],
       isLoading: true,
       showFooter: false
     }
@@ -169,7 +168,6 @@ export default {
 
   methods: {
     openFooter() {
-      console.log(this.showFooter)
       this.showFooter = !this.showFooter
     }
   },
@@ -182,26 +180,28 @@ export default {
       .then(res => {
         this.restaurantData = res.data.data
         this.isLoading = false
-        console.log(this.restaurantData.products)
       })
       .catch(err => {
         this.$router.push({ name: 'index' })
-        console.log(err)
-      })
-
-    this.$axios
-      .get(process.env.baseApiUrl + 'tags')
-      .then(res => {
-        this.condementsData = res.data.data
-        console.log(this.condementsData)
-      })
-      .catch(err => {
-        this.$router.push({ name: 'index' })
-        console.log(err)
       })
   },
   mounted() {},
   computed: {
+    allCodemenets() {
+      let condamentsData = new Set()
+      let products = this.restaurantData.products
+      console.log(products)
+      for (var categoryKey in products) {
+        let category = products[categoryKey]
+        for (var productKey in category) {
+          let product = category[productKey]
+          product.condaments.forEach(item =>
+            condamentsData.add(item.name.toLowerCase())
+          )
+        }
+      }
+      return Array.from(condamentsData).join(', ')
+    }
     /*
     burgerProducts() {
       if (!this.restaurantData) return []
@@ -253,6 +253,7 @@ p {
   font-size: 40px;
   line-height: 48px;
   letter-spacing: -0.5px;
+  padding-top: 38px;
 }
 
 .restaurant-adress {
@@ -316,6 +317,13 @@ p {
   padding-bottom: 33px;
   padding-left: 32px;
 
+  font-style: normal;
+  font-weight: 550;
+  font-size: 16px;
+  line-height: 24px;
+
+  letter-spacing: 0.1px;
+
   color: #070707;
 }
 
@@ -325,7 +333,6 @@ p {
   padding-bottom: 33px;
   padding-left: 32px;
 
-  font-family: 'TT Norms';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
