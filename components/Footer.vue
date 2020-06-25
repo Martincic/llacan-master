@@ -53,9 +53,9 @@ box-shadow: 0px 0px 6px rgba(251, 222, 7, 0.4)
 
 .btn-button{
     font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 24px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
 /* identical to box height, or 150% */
 
 display: flex;

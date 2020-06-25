@@ -24,7 +24,7 @@
       <div class="footer-components  u-flex u-flex-jc--c u-flex-ai--c mlr-xxl mt-sm ">
 
         <div class="footer-components__center ptb-xs">
-          <p @click="openFooter">{{ordersInfo}}</p>
+          <p class="pb-xs" @click="openFooter">{{ordersInfo}}</p>
         </div>
 
       </div>
@@ -91,7 +91,7 @@
       })
 
     // Aktivne narudzbe
-    this.$axios.get(process.env.baseApiUrl + 'orders').then(res => {
+    this.$axios.get(process.env.baseApiUrl + 'orders/activeOrders').then(res => {
         this.activeOrders = res.data.data
         this.loading2 = false
         if(!this.loading1 && !this.loading2) this.isLoading = false;
