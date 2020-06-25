@@ -98,11 +98,10 @@
           <p @click="openFooter">{{ ordersInfo }}</p>
         </div>
         <div class="footer-components__right ptb-xs plr-xs">
-          <nuxt-link
-            :to="`/restaurants/${restaurantData.slug}/order`"
-            class="btn btn-menu btn-button-new"
-            >Nova narudžba
-          </nuxt-link>
+          <button @click="createOrder" class="btn btn-menu btn-button-new">
+            Nova narudžba
+          </button>
+          <!-- :to="`/restaurants/${restaurantData.slug}/order`" -->
         </div>
       </div>
       <collapse-transition>
@@ -161,6 +160,30 @@ export default {
   methods: {
     openFooter() {
       this.showFooter = !this.showFooter
+    },
+    createOrder() {
+      this.$axios
+        .post(process.env.baseApiUrl + 'orders/store', {
+          user_id: this.$auth.user.id,
+          restaurant_id: this.restaurantData.id
+        })
+        .then(() => {
+          this.$router.push(
+            '/orders/' +
+              this.restaurantData.slug +
+              '-' +
+              moment(new Date()).format('DD-mm-YYYY')
+          )
+        })
+        .catch(() => {
+          alert('Narudžba za odabrani restoran postoji, prosljeđujem...')
+          this.$router.push(
+            '/orders/' +
+              this.restaurantData.slug +
+              '-' +
+              moment(new Date()).format('DD-mm-YYYY')
+          )
+        })
     }
   },
 
