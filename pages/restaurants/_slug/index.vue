@@ -32,19 +32,24 @@
             </div>
           </div>
 
-          <div class="categories__paragraf fs-base">
+          <div
+            class="categories__paragraf fs-base"
+            v-show="restaurantData.pommes_price != null"
+          >
             <p>POMMES</p>
           </div>
         </div>
 
-        <div class="condements">
-          <div class="condements__title fs-md">
-            <h1>Dodaci</h1>
-          </div>
-          <div class="condements__paragraf fs-base">
-            <p>
-              {{ allCodemenets }}
-            </p>
+        <div v-if="allCodemenets.length > 0">
+          <div class="condements">
+            <div class="condements__title fs-md">
+              <h1>Dodaci</h1>
+            </div>
+            <div class="condements__paragraf fs-base">
+              <p>
+                {{ allCodemenets }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -90,20 +95,7 @@
           </nuxt-link>
         </div>
         <div class="footer-components__center ptb-xs">
-          <p @click="openFooter">Aktivne narudžbe (2)</p>
-          <!-- <div class="hiddenOrders u-flex u-flex-fd--c">
-                <div class=" hiddenOtrders__singleRestaurant u-flex u-flex-fd--r">
-                    <div class="hiddenOtrders-singleRestaurant__restaurantTime u-flex u-flex-fd--r pl-xs border-box">
-                        <p>Fast Food Forever</p>
-                        <p>(otvorio - User 09:42)</p>
-                    </div>
-                    <div class="hiddenOtrders-singleRestaurant__join">
-                        <button class="btn btn-menu btn-button-new pr-xs ">Pridruži se</button>
-                    </div>
-                </div>
-                
-
-            </div> -->
+          <p @click="openFooter">{{ ordersInfo }}</p>
         </div>
         <div class="footer-components__right ptb-xs plr-xs">
           <nuxt-link
@@ -112,11 +104,6 @@
             >Nova narudžba
           </nuxt-link>
         </div>
-        <!-- <div class="proba" style=" height:300px">
-            <div>dfdsf</div>
-            <div>sfds</div>
-
-        </div> -->
       </div>
       <collapse-transition>
         <div v-show="showFooter">
@@ -125,6 +112,8 @@
           >
             <div
               class=" hiddenOtrders__singleRestaurant u-flex u-flex-fd--r u-flex-jc--sb"
+              v-for="(order, i) in activeOrders"
+              :key="i"
             >
               <div
                 class="hiddenOtrders-singleRestaurant__restaurantTime u-flex u-flex-fd--r pl-xs "
@@ -132,12 +121,13 @@
                 <p
                   class="hiddenOtrders-singleRestaurant-restaurantTime__title font-normal-bold fs-md pt-xs"
                 >
-                  Fast Food Forever
+                  {{ order.restaurant }}
                 </p>
                 <p
                   class="hiddenOtrders-singleRestaurant-restaurantTime__paragraf pt-xs "
                 >
-                  (otvorio - User 09:42)
+                  &nbsp;(otvorio - {{ order.user_name.split(' ')[0] }}
+                  {{ order.created_at | moment }})
                 </p>
               </div>
               <div class="hiddenOtrders-singleRestaurant__join ">
@@ -153,6 +143,7 @@
 
 <script>
 import { CollapseTransition } from 'vue2-transitions'
+import moment from 'moment'
 export default {
   components: {
     CollapseTransition
@@ -162,7 +153,8 @@ export default {
     return {
       restaurantData: [],
       isLoading: true,
-      showFooter: false
+      showFooter: false,
+      activeOrders: []
     }
   },
 
@@ -184,13 +176,24 @@ export default {
       .catch(err => {
         this.$router.push({ name: 'index' })
       })
+
+    this.$axios
+      .get(process.env.baseApiUrl + 'orders/activeOrders')
+      .then(res => {
+        this.activeOrders = res.data.data
+      })
+      .catch(err => {
+        this.$router.push({
+          name: 'index'
+        })
+        console.log(err)
+      })
   },
   mounted() {},
   computed: {
     allCodemenets() {
       let condamentsData = new Set()
       let products = this.restaurantData.products
-      console.log(products)
       for (var categoryKey in products) {
         let category = products[categoryKey]
         for (var productKey in category) {
@@ -201,17 +204,15 @@ export default {
         }
       }
       return Array.from(condamentsData).join(', ')
-    }
-    /*
-    burgerProducts() {
-      if (!this.restaurantData) return []
-      return this.restaurantData.products.filter(p => p.category === 'Burger')
     },
-    paninProducts() {
-      if (!this.restaurantData) return []
-      return this.restaurantData.products.filter(p => p.category === 'Panin')
+    ordersInfo() {
+      return 'Aktivne narudžbe (' + this.activeOrders.length + ')'
     }
-    */
+  },
+  filters: {
+    moment: function(date) {
+      return moment(date).format('HH:mm')
+    }
   }
 }
 </script>
@@ -408,13 +409,12 @@ p {
   padding-bottom: 24.9px;
   padding-right: 40px;
 }
-// .footer{
-//   box-sizing: border-box;
-//   border: 1px solid $primary-color;
-//   background-color: $primary-color;
-//   bottom:0px;
-//   height:100px;
-// }
+.footer {
+  box-sizing: border-box;
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  bottom: 0px;
+}
 
 // .footer-components__left{
 //     background-color: $tertiary-color;
