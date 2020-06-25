@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <h1 class="fs xxl loader" v-if="isLoading"></h1>
+      <Loader v-if="isLoading" />
 
       <div class="restaurants__list u-flex u-flex-jc--sb u-flex-fw--w" v-else>
         <SingleRestaurant v-for="restaurant in restaurants" :key="restaurant.id" :restaurantInfo="restaurant" />
@@ -56,6 +56,7 @@
 <script>
   import SingleRestaurant from '@/components/SingleRestaurant'
   import BottomNavToggle from "@/components/BottomNavToggle";
+  import Loader from "@/components/Loader";
   import {
     CollapseTransition
   } from 'vue2-transitions';
@@ -76,7 +77,8 @@
     components: {
       SingleRestaurant,
       BottomNavToggle,
-      CollapseTransition
+      CollapseTransition,
+      Loader
     },
     created() {
       // Restorani
@@ -189,37 +191,7 @@
   }
 
   /* spiner */
-  .loader {
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid gray;
-    width: 100px;
-    height: 100px;
-    -webkit-animation: spin 2s linear infinite;
-    /* Safari */
-    animation: spin 2s linear infinite;
-  }
 
-  /* Safari */
-  @-webkit-keyframes spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 
   .footer {
     box-sizing: border-box;
