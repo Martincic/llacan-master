@@ -137,7 +137,10 @@
         </div>
       </collapse-transition>
     </div>
-    <Warning :warningToggle="this.warningToggle" />
+    <Warning
+      :warningToggle="this.warningToggle"
+      :redirectRoute="this.routeToOrder"
+    />
   </section>
 </template>
 
@@ -158,7 +161,8 @@ export default {
       showFooter: false,
       activeOrders: [],
       warningToggle: false,
-      finalSlug: ''
+      finalSlug: '',
+      routeToOrder: ''
     }
   },
 
@@ -194,6 +198,7 @@ export default {
         this.postOrder()
       } else {
         this.warningToggle = true
+        this.routeToOrder = '/orders/' + this.finalSlug
         //TODO: this.$router.push('/orders/' + this.finalSlug)
       }
     }
