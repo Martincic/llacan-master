@@ -60,24 +60,25 @@
             <h1>Ostali ({{this.order.user_order.length}})</h1>
           </div>
 
-          <div v-for="userorder in this.order.user_order" :key="userorder.id" class="my-choice-orders__allOrders u-flex u-flex-fd--r u-flex-jc--sb border-box">
-            <div class="my-choice-orders__user pb-sm pl-sm w-300">
 
-              <p class="user-name fs-base font-normal-sm">{{userorder.username}}</p>
-              <!-- <p class="user-name fs-base font-normal-sm "> <span class="profile"><img class="imgUser"></span>Anthony</p> -->
-            </div>
+            <div v-for="userorder in this.order.user_order" :key="userorder.id" class="my-choice-orders__allOrders u-flex u-flex-fd--r u-flex-jc--sb border-box">
+              <div class="my-choice-orders__user pb-sm pl-sm w-300">
 
-            <div class="my-choice-orders__food u-flex-1">
-              <h1 class="food__name fs-base font-normal-medium">{{userorder.product.name}}</h1>
-              <p class="food__condements fs-sm font-normal-small">
-                <span v-for="condament in userorder.condaments" :key="condament.id">{{condament.name}},&nbsp;</span>
-              </p>
-            </div>
-            <div class="my-choice-information__price pr-sm fs-base font-normal-medium w-100">
-              <p>{{userorder.product.price}} kn</p>
-            </div>
-          </div>
+                <p class="user-name fs-base font-normal-sm">{{userorder.username}}</p>
+                <!-- <p class="user-name fs-base font-normal-sm "> <span class="profile"><img class="imgUser"></span>Anthony</p> -->
+              </div>
 
+              <div class="my-choice-orders__food u-flex-1">
+                <h1 class="food__name fs-base font-normal-medium">{{userorder.product.name}}</h1>
+                <p class="food__condements fs-sm font-normal-small">
+                  <span v-for="condament in userorder.condaments" :key="condament.id">{{condament.name}},&nbsp;</span>
+                </p>
+              </div>
+              <div class="my-choice-information__price pr-sm fs-base font-normal-medium w-100">
+                <p>{{userorder.product.price | null}} kn</p>
+              </div>
+            </div>
+            
         
         </div>
         <div class="party u-flex u-flex-fd--c border-box">
@@ -250,7 +251,6 @@
           <button class="btn  "><img class="share" src="~/assets/img/share.svg" />Podijeli narudžbu</button>
         </div>
       </div>
-
     </div>
 
     <section class="modal" v-if="modalOpened">

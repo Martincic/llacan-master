@@ -30,7 +30,7 @@
             <div class="categories__paragraf fs-base">
               <p>{{ index.toUpperCase() }}</p>
             </div>
-          </div>
+        </div>
 
           <div
             class="categories__paragraf fs-base"
@@ -55,33 +55,7 @@
       </div>
 
       <div class="menu-info__right u-flex u-flex-fd--r">
-        <div class="menu-info-right__food">
-          <div
-            v-for="(category, index) in restaurantData.products"
-            :key="index"
-          >
-            <h1 class="title-restaurant border-box">{{ index }}</h1>
-            <!-- <h1 class="title-restaurant border-box">Burger</h1>  -->
-
-            <div
-              class="menu-info-right__food1  u-flex u-flex-fd-r u-flex-jc--sb"
-              v-for="(item, index) in restaurantData.products[index]"
-              :key="index"
-            >
-              <div class="ingredients">
-                <!-- <p class="restaurant"></p> -->
-                <p class="title-food">{{ item.name }}</p>
-
-                <p class="ingredients-food">
-                  {{ item.description }}
-                </p>
-              </div>
-              <div class="price fs-base">
-                <p>{{ item.price }} kn</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <AllProducts />
       </div>
     </div>
 
@@ -145,10 +119,13 @@
 import { CollapseTransition } from 'vue2-transitions'
 import moment from 'moment'
 import Warning from '@/components/Warning'
+import AllProducts from '@/components/AllProductsList'
+
 export default {
   components: {
     CollapseTransition,
-    Warning
+    Warning,
+    AllProducts,
   },
 
   data() {
