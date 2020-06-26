@@ -120,7 +120,7 @@
                 <p
                   class="hiddenOtrders-singleRestaurant-restaurantTime__title font-normal-bold fs-md pt-xs"
                 >
-                  {{ order.restaurant }}
+                  {{ order.restaurant.title }}&nbsp;
                 </p>
                 <p
                   class="hiddenOtrders-singleRestaurant-restaurantTime__paragraf pt-xs "
@@ -137,15 +137,18 @@
         </div>
       </collapse-transition>
     </div>
+    <Warning :warningToggle="this.warningToggle" />
   </section>
 </template>
 
 <script>
 import { CollapseTransition } from 'vue2-transitions'
 import moment from 'moment'
+import Warning from '@/components/Warning'
 export default {
   components: {
-    CollapseTransition
+    CollapseTransition,
+    Warning
   },
 
   data() {
@@ -153,7 +156,9 @@ export default {
       restaurantData: [],
       isLoading: true,
       showFooter: false,
-      activeOrders: []
+      activeOrders: [],
+      warningToggle: false,
+      finalSlug: ''
     }
   },
 
@@ -161,35 +166,41 @@ export default {
     openFooter() {
       this.showFooter = !this.showFooter
     },
-    createOrder() {
+    orderIsActive() {
+      this.finalSlug =
+        this.restaurantData.slug + '-' + moment(new Date()).format('DD-MM-YYYY')
+      console.log('orderIsActive')
+      let exists = false
+      for (let i = 0; i < this.activeOrders.length; i++) {
+        if (this.activeOrders[i].slug === this.finalSlug) {
+          return true
+        }
+      }
+      return false
+    },
+    postOrder() {
       this.$axios
         .post(process.env.baseApiUrl + 'orders/store', {
           user_id: this.$auth.user.id,
           restaurant_id: this.restaurantData.id
         })
         .then(() => {
-          this.$router.push(
-            '/orders/' +
-              this.restaurantData.slug +
-              '-' +
-              moment(new Date()).format('DD-mm-YYYY')
-          )
+          this.$router.push('/orders/' + this.finalSlug)
         })
-        .catch(() => {
-          alert('Narudžba za odabrani restoran postoji, prosljeđujem...')
-          this.$router.push(
-            '/orders/' +
-              this.restaurantData.slug +
-              '-' +
-              moment(new Date()).format('DD-mm-YYYY')
-          )
-        })
+        .catch(err => console.log(err))
+    },
+    createOrder() {
+      if (this.orderIsActive() == false) {
+        this.postOrder()
+      } else {
+        this.warningToggle = true
+        //TODO: this.$router.push('/orders/' + this.finalSlug)
+      }
     }
   },
 
   created() {
     if (!this.$auth.loggedIn) this.$router.push({ name: 'index' })
-
     this.$axios
       .get(process.env.baseApiUrl + 'restaurants/' + this.$route.params.slug)
       .then(res => {
