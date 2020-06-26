@@ -258,12 +258,14 @@
         <h1>Odaberite glavno jelo</h1>
         <button class="close pr-sm" @click="modalOpened = false">X</button>
       </div>
-      <div class="overlay__table  font-normaln-bold fs-md mlr-sm u-flex u-flex-fd--c">
-        <div class="overlay-table__title border-box pl-md  ">
-          <h1 class="overly-table-title__foodName pl-xs">
-            Burger
-          </h1>
+          <AllProducts 
+            v-if="restaurantData"
+            :restaurant="restaurantData" 
+            class ="px-40px"
+          />
         </div>
+
+
         <div class="overlay-table__information u-flex u-flex-fd--r u-flex-jc--sb border-box pl-md  ptb-xs"
           @click="openChoice">
           <div class="overlay-table-information__food pl-xs ">
@@ -280,8 +282,10 @@
 
           </div>
 
-
         </div>
+
+
+
         <collapse-transition>
           <div v-show="showOpen">
             <div class="showWindow border-box pt-xs pl-md ">
@@ -395,11 +399,13 @@
   import Loader from "@/components/Loader";
   import moment from 'moment';
   import axios from 'axios';
+  import AllProducts from '@/components/EveryProduct'
 
   export default {
     components: {
       CollapseTransition,
-      Loader
+      Loader,
+      AllProducts
     },
     data() {
       return {
@@ -435,7 +441,7 @@
         this.$axios
         .get(process.env.baseApiUrl + 'restaurants/' + this.order.restaurant.slug)
         .then(res => {
-          this.restaurantData = res.data
+          this.restaurantData = res.data.data
         })
         .catch(err => {
           this.$router.push({ name: 'index' })
@@ -738,6 +744,10 @@
 
   .icon-back-icon {
     padding-right: 4px;
+  }
+
+  .px-40px{
+    padding: 0 40px;
   }
 
 </style>

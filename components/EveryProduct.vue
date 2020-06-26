@@ -45,7 +45,7 @@ p {
   // padding-top:150px;
   position: relative;
   margin: 0 auto;
-  width: 1440px;
+  width: 100%;
   padding-bottom: 104px;
 }
 
@@ -174,7 +174,7 @@ p {
   font-size: 32px;
   line-height: 38px;
   letter-spacing: -0.4px;
-  width: 952px;
+  width: 100%;
   height: 100px;
 }
 
