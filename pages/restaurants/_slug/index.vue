@@ -55,17 +55,11 @@
       </div>
 
       <div class="menu-info__right u-flex u-flex-fd--r">
-<<<<<<< HEAD
         <AllProducts
           v-if="restaurantData"
           :restaurant="restaurantData"
           :addProduct="false"
-=======
-        <AllProducts v-if="restaurantData"
-        :restaurant="restaurantData" 
-        :addProduct="false"
-        class="w-200"
->>>>>>> 3bf25a854a24488ab1fe7d6893513d3e5754592f
+          class="w-200"
         />
       </div>
     </div>
@@ -253,7 +247,7 @@ p {
   line-height: 20px;
 }
 
-.w-200{
+.w-200 {
   width: 200%;
 }
 .menu-info {
