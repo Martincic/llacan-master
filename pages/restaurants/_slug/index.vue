@@ -58,6 +58,7 @@
         <AllProducts v-if="restaurantData"
         :restaurant="restaurantData" 
         :addProduct="false"
+        class="w-200"
         />
       </div>
     </div>
@@ -241,6 +242,9 @@ p {
   line-height: 20px;
 }
 
+.w-200{
+  width: 200%;
+}
 .menu-info {
   // padding-top:150px;
   position: relative;

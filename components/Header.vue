@@ -62,7 +62,7 @@ export default {
   height: 100px;
   
   background-color: black;
-  z-index: 100;
+  z-index: 9999;
   box-sizing: border-box;
   padding: 0 20px;
 }

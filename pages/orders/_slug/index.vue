@@ -250,7 +250,7 @@
       </div>
     </div>
 
-    <section class="modal" v-if="modalOpened">
+    <section class="modal" v-if="modalOpened"   style="margin-bottom:100px;">
       <div class="overlay__selectFood font-normaln-bold fs-lg pl-md u-flex u-flex-fd--r u-flex-jc--sb mt-sm mb-md">
         <h1>Odaberite glavno jelo</h1>
         <button class="close pr-sm" @click="modalOpened = false">X</button>
@@ -282,11 +282,9 @@
 
         </div>
 
-
-
-        <collapse-transition>
+<collapse-transition>
           <div v-show="showOpen">
-            <div class="showWindow border-box pt-xs pl-md ">
+            <div class="showWindow border-box pt-xs pl-md">
               <p class="showWindow__paragraf ptb-xs font-normal-small fs-base">Odaberite datoteke</p>
               <div class="showwindow__select u-flex u-flex-fd--r u-flex-jc--sb">
                 <div class="showwindow-select__condements">
@@ -296,16 +294,12 @@
                 <div class="showwindow__button pb-sm pr-xs">
                   <button class=" btn btn-button btn-select  fs-base font-normal-sm-n">Dodaj u narudžbu</button>
                 </div>
-
               </div>
-
-
-
-
             </div>
-
           </div>
         </collapse-transition>
+
+        
 
         <!-- dodaj colapse showppen -->
 
@@ -315,9 +309,6 @@
                 <p class="proba2">As many as you need to wash you out from my mind and out of my consciousness.</p>
                 <p class="proba2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
             </div> -->
-      </div>
-
-      </div>
 
 
       <!-- <button @click="modalOpened = false">X</button> -->
@@ -452,6 +443,10 @@
 
 <style scoped lang="scss">
   
+  .footer{
+    bottom: 0;
+  }
+
   .w-300{
     width: 300px;
   }
@@ -746,6 +741,7 @@
 
   .px-40px{
     padding: 0 40px;
+    padding-bottom: 50px;
   }
 
 </style>

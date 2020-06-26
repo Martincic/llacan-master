@@ -5,6 +5,7 @@
     background-color: $primary-color;
     width: 100%;
     position: fixed;
+    z-index: 9999;
   }
   
   .footer-components__left{
