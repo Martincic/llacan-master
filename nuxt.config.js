@@ -57,7 +57,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL:'http://192.168.10.74/llacan/public/api/'
+    baseURL:'http://192.168.10.85/llacan/public/api/'
   },
   auth: {
     redirect: { login: '/', logout: '/', home: "/restaurants" },
@@ -65,12 +65,12 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'http://192.168.10.74/llacan/public/api/login',
+            url: 'http://192.168.10.85/llacan/public/api/login',
             method: 'post',
             propertyName: 'data.token'
           },
           user: {
-            url: 'http://192.168.10.74/llacan/public/api/me',
+            url: 'http://192.168.10.85/llacan/public/api/me',
             method: 'get',
             propertyName: 'data'
           }
@@ -79,7 +79,7 @@ export default {
     }
   },
   env: {
-    baseApiUrl: 'http://192.168.10.74/llacan/public/api/'
+    baseApiUrl: 'http://192.168.10.85/llacan/public/api/'
   },
   /*
   ** Build configuration

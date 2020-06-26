@@ -56,10 +56,9 @@
 
         <div class="my-choice__orders u-flex-fd-c border-box">
           <div class="my-choice-orders__others ptb-sm pl-sm">
-            <h1>Ostali (1)</h1>
+            <h1>Ostali ({{this.order.user_order.length}})</h1>
           </div>
           <div class="my-choice-orders__allOrders u-flex u-flex-fd--r u-flex-jc--sb border-box">
-
             <div class="my-choice-orders__user pb-sm pl-sm ">
 
               <p class="user-name fs-base font-normal-sm">Anthony</p>
@@ -245,7 +244,7 @@
 
         </div>
         <div class="footer-components__center fs-md">
-          <p>Narudžba za dan 10.06.2020. </p>
+          <p>Narudžba za dan {{getDate}} </p>
         </div>
         <div class="footer-components__right fs-base">
           <button class="btn  "><img class="share" src="~/assets/img/share.svg" />Podijeli narudžbu</button>
@@ -415,12 +414,15 @@
 </template>
 
 <script>
+  
   import {
     CollapseTransition
   } from 'vue2-transitions';
+  
   import Loader from "@/components/Loader";
-  // import Axios from '@nuxtjs/axios';
-  // import Vue from 'vue';
+  import moment from 'moment';
+  import axios from 'axios';
+
   export default {
     components: {
       CollapseTransition,
@@ -442,13 +444,15 @@
       },
     },
     computed: {
-      async asyncData({
-        $axios
-      }) {
-        const order = await $axios.$get(process.env.baseApiUrl + `orders/${this.$route.params.slug}`)
+      getDate() {
+        return moment().format("DD.MM.YYYY")
+      },
+    },
+    async beforeCreate() {
+        const order = await this.$axios.$get(process.env.baseApiUrl + `orders/${this.$route.params.slug}`)
         this.order = order.data
         this.isLoading = false
-      }
+        console.log(this.order)
     }
   }
 </script>
