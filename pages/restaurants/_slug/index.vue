@@ -55,7 +55,9 @@
       </div>
 
       <div class="menu-info__right u-flex u-flex-fd--r">
-        <AllProducts />
+        <AllProducts v-if="restaurantData"
+        :restaurant="restaurantData" 
+        />
       </div>
     </div>
 
@@ -119,7 +121,7 @@
 import { CollapseTransition } from 'vue2-transitions'
 import moment from 'moment'
 import Warning from '@/components/Warning'
-import AllProducts from '@/components/AllProductsList'
+import AllProducts from '@/components/EveryProduct'
 
 export default {
   components: {
