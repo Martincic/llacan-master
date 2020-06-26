@@ -9,8 +9,14 @@
       </p>
       <hr />
       <div class="u-flex u-flex-jc--sb plr-xl ptb-sm">
-        <button class="">Natrag na restorane</button>
-        <button class="btn btn--primary">Pridruži se postojećoj</button>
+        <nuxt-link to="/restaurants"
+          ><button class="">Natrag na restorane</button></nuxt-link
+        >
+        <nuxt-link :to="this.redirectRoute"
+          ><button class="btn btn--primary">
+            Pridruži se postojećoj
+          </button></nuxt-link
+        >
       </div>
     </div>
   </div>
@@ -19,7 +25,8 @@
 <script>
 export default {
   props: {
-    warningToggle: false
+    warningToggle: false,
+    redirectRoute: ''
   }
 }
 </script>
