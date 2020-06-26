@@ -279,8 +279,10 @@
       </div>
     </div>
 
-    <section class="modal" v-if="modalOpened"   style="margin-bottom:100px;">
-      <div class="overlay__selectFood font-normaln-bold fs-lg pl-md u-flex u-flex-fd--r u-flex-jc--sb mt-sm mb-md">
+    <section class="modal" v-if="modalOpened" style="margin-bottom:100px;">
+      <div
+        class="overlay__selectFood font-normaln-bold fs-lg pl-md u-flex u-flex-fd--r u-flex-jc--sb mt-sm mb-md"
+      >
         <h1>Odaberite glavno jelo</h1>
         <button class="close pr-sm" @click="modalOpened = false">X</button>
       </div>
@@ -313,27 +315,33 @@
           <p>22,00 kn</p>
         </div>
 
-<collapse-transition>
+        <collapse-transition>
           <div v-show="showOpen">
             <div class="showWindow border-box pt-xs pl-md">
-              <p class="showWindow__paragraf ptb-xs font-normal-small fs-base">Odaberite datoteke</p>
+              <p class="showWindow__paragraf ptb-xs font-normal-small fs-base">
+                Odaberite datoteke
+              </p>
               <div class="showwindow__select u-flex u-flex-fd--r u-flex-jc--sb">
                 <div class="showwindow-select__condements">
-                  <p class="button__condements fs-base font-normal-small">Kečap</p>
+                  <p class="button__condements fs-base font-normal-small">
+                    Kečap
+                  </p>
                   <!-- <button>Majoneza</button> -->
                 </div>
                 <div class="showwindow__button pb-sm pr-xs">
-                  <button class=" btn btn-button btn-select  fs-base font-normal-sm-n">Dodaj u narudžbu</button>
+                  <button
+                    class=" btn btn-button btn-select  fs-base font-normal-sm-n"
+                  >
+                    Dodaj u narudžbu
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </collapse-transition>
+        </collapse-transition>
+      </div>
 
-        
-
-        <!-- dodaj colapse showppen -->
+      <!-- dodaj colapse showppen -->
 
       <!-- <div class="probaa">
                 <input type="checkbox" >
@@ -508,22 +516,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  
-  .footer{
-    bottom: 0;
-  }
+.footer {
+  bottom: 0;
+}
 
-  .w-300{
-    width: 300px;
-  }
+.w-300 {
+  width: 300px;
+}
 
-  .w-100{
-    width: 100px;
-  }
+.w-100 {
+  width: 100px;
+}
 
-  .probaa {
-    position: relative;
-  }
+.probaa {
+  position: relative;
+}
 
 .w-100 {
   width: 100px;
@@ -791,10 +798,10 @@ input[type='checkbox']:checked ~ h2 ~ p {
   padding-top: 20px;
 }
 
-  .px-40px{
-    padding: 0 40px;
-    padding-bottom: 50px;
-  }
+.px-40px {
+  padding: 0 40px;
+  padding-bottom: 50px;
+}
 
 .px-40px {
   padding: 0 40px;
