@@ -260,7 +260,9 @@
       </div>
       <div class="overlay__table  font-normaln-bold fs-md mlr-sm u-flex u-flex-fd--c">
         <div class="overlay-table__title border-box pl-md  ">
-          <h1 class="overly-table-title__foodName pl-xs">Burger</h1>
+          <h1 class="overly-table-title__foodName pl-xs">
+            Burger
+          </h1>
         </div>
         <div class="overlay-table__information u-flex u-flex-fd--r u-flex-jc--sb border-box pl-md  ptb-xs"
           @click="openChoice">
@@ -407,6 +409,7 @@
         modalAccept: false,
         modalStep:0,
         order: [],
+        restaurantData: [],
         isLoading: true,
         totalPrice: 0,
       }
@@ -419,7 +422,7 @@
     computed: {
       getDate() {
         return moment().format("DD.MM.YYYY")
-      },
+      }
     },
     async beforeCreate() {
         const order = await this.$axios.$get(process.env.baseApiUrl + `orders/${this.$route.params.slug}`)
@@ -427,7 +430,15 @@
 
         this.order.user_order.forEach((singleOrder) => {
           this.totalPrice += parseInt(singleOrder.product.price.split('.',1)[0])
-          console.log(parseInt(singleOrder.product.price.split('.',1)[0]))
+        })
+        
+        this.$axios
+        .get(process.env.baseApiUrl + 'restaurants/' + this.order.restaurant.slug)
+        .then(res => {
+          this.restaurantData = res.data
+        })
+        .catch(err => {
+          this.$router.push({ name: 'index' })
         })
 
         this.isLoading = false
