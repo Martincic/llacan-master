@@ -4,6 +4,7 @@
           <div
             v-for="(category, index) in restaurant.products"
             :key="index"
+             @click="openChoice" 
           >
             <h1 class="title-restaurant border-box">{{ index }}</h1>
             <!-- <h1 class="title-restaurant border-box">Burger</h1>  -->
@@ -15,7 +16,7 @@
             >
               <div class="ingredients">
                 <!-- <p class="restaurant"></p> -->
-                <p class="title-food">{{ item.name }}</p>
+                <p class="title-food w-500px">{{ item.name }}</p>
 
                 <p class="ingredients-food">
                   {{ item.description }}
@@ -25,23 +26,44 @@
                 <p>{{ item.price }} kn</p>
               </div>
              
-              <div v-if="addProduct">
-                    HEHEHHE
-
+              <div v-if="addProduct" class="w-100px u-flex-1">
+                    <collapse-transition>
+                      <div v-show="showOpen">
+                        <div class="showWindow border-box pt-xs pl-md">
+                          <p class="showWindow__paragraf ptb-xs font-normal-small fs-base">Odaberite datoteke</p>
+                          <div class="showwindow__select u-flex u-flex-fd--r u-flex-jc--sb">
+                            <div class="showwindow-select__condements">
+                              <p class="button__condements fs-base font-normal-small">Kečap</p>
+                            </div>
+                            <div class="showwindow__button pb-sm pr-xs">
+                              <button class=" btn btn-button btn-select  fs-base font-normal-sm-n">Dodaj u narudžbu</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </collapse-transition>
               </div>
             </div>
           </div>
         </div>
   </section>
 </template>
-
 <script>
 export default {
-  props: ['restaurant', 'addProduct']
+  props: ['restaurant', 'addProduct'],
+
 }
 </script>
 
 <style scoped lang="scss">
+
+.w-500px{
+  width: 500px;
+}
+.w-100px{
+  width: 100px;
+}
+
 p {
   line-height: 20px;
 }

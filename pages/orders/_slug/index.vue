@@ -279,10 +279,15 @@
       </div>
     </div>
 
+<<<<<<< HEAD
     <section class="modal" v-if="modalOpened">
       <div
         class="overlay__selectFood font-normaln-bold fs-lg pl-md u-flex u-flex-fd--r u-flex-jc--sb mt-sm mb-md"
       >
+=======
+    <section class="modal" v-if="modalOpened"   style="margin-bottom:100px;">
+      <div class="overlay__selectFood font-normaln-bold fs-lg pl-md u-flex u-flex-fd--r u-flex-jc--sb mt-sm mb-md">
+>>>>>>> 3bf25a854a24488ab1fe7d6893513d3e5754592f
         <h1>Odaberite glavno jelo</h1>
         <button class="close pr-sm" @click="modalOpened = false">X</button>
       </div>
@@ -315,6 +320,7 @@
           <p>22,00 kn</p>
         </div>
 
+<<<<<<< HEAD
         <div class="overlay-table-information__button">
           <img class="share pl-xs pt-xs" src="~/assets/img/plus.svg" />
         </div>
@@ -339,13 +345,33 @@
                 >
                   Dodaj u narudžbu
                 </button>
+=======
+<collapse-transition>
+          <div v-show="showOpen">
+            <div class="showWindow border-box pt-xs pl-md">
+              <p class="showWindow__paragraf ptb-xs font-normal-small fs-base">Odaberite datoteke</p>
+              <div class="showwindow__select u-flex u-flex-fd--r u-flex-jc--sb">
+                <div class="showwindow-select__condements">
+                  <p class="button__condements fs-base font-normal-small">Kečap</p>
+                  <!-- <button>Majoneza</button> -->
+                </div>
+                <div class="showwindow__button pb-sm pr-xs">
+                  <button class=" btn btn-button btn-select  fs-base font-normal-sm-n">Dodaj u narudžbu</button>
+                </div>
+>>>>>>> 3bf25a854a24488ab1fe7d6893513d3e5754592f
               </div>
             </div>
           </div>
         </div>
       </collapse-transition>
 
+<<<<<<< HEAD
       <!-- dodaj colapse showppen -->
+=======
+        
+
+        <!-- dodaj colapse showppen -->
+>>>>>>> 3bf25a854a24488ab1fe7d6893513d3e5754592f
 
       <!-- <div class="probaa">
                 <input type="checkbox" >
@@ -353,6 +379,10 @@
                 <p class="proba2">As many as you need to wash you out from my mind and out of my consciousness.</p>
                 <p class="proba2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
             </div> -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3bf25a854a24488ab1fe7d6893513d3e5754592f
 
       <!-- <button @click="modalOpened = false">X</button> -->
     </section>
@@ -520,9 +550,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
+<<<<<<< HEAD
 .w-300 {
   width: 300px;
 }
+=======
+  
+  .footer{
+    bottom: 0;
+  }
+
+  .w-300{
+    width: 300px;
+  }
+
+  .w-100{
+    width: 100px;
+  }
+
+  .probaa {
+    position: relative;
+  }
+>>>>>>> 3bf25a854a24488ab1fe7d6893513d3e5754592f
 
 .w-100 {
   width: 100px;
@@ -790,9 +839,16 @@ input[type='checkbox']:checked ~ h2 ~ p {
   padding-top: 20px;
 }
 
+<<<<<<< HEAD
 .icon-back-icon {
   padding-right: 4px;
 }
+=======
+  .px-40px{
+    padding: 0 40px;
+    padding-bottom: 50px;
+  }
+>>>>>>> 3bf25a854a24488ab1fe7d6893513d3e5754592f
 
 .px-40px {
   padding: 0 40px;
