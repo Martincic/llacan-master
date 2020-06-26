@@ -24,6 +24,11 @@
               <div class="price fs-base">
                 <p>{{ item.price }} kn</p>
               </div>
+             
+              <div v-if="addProduct">
+                    HEHEHHE
+
+              </div>
             </div>
           </div>
         </div>
@@ -32,7 +37,7 @@
 
 <script>
 export default {
-  props: ['restaurant']
+  props: ['restaurant', 'addProduct']
 }
 </script>
 

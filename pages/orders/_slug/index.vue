@@ -28,13 +28,14 @@
               <button class=" btn btn-button btn-select fs-base font-normal-sm-n" @click="modalOpened = true">Odaberi za
                 sebe</button>
 
-
             </div>
           </div>
+
+
           <div class="my-choice__uniqueUser u-flex u-flex-fd--r u-flex-jc--sb border-box">
             <div class="my-choice-orders__user pb-sm pl-sm">
               <img>
-              <p class="user-name fs-base font-normal-sm  ">User{{asyncData}}</p>
+              <p class="user-name fs-base font-normal-sm  ">{{this.$auth.user.name}}</p>
             </div>
 
             <div class="my-choice-orders__food pl-lg">
@@ -232,10 +233,6 @@
       </div>
     </div>
 
-        </div>
-      </div>
-
-    </div>
 
     <div class="footer">
       <div class="footer-components  u-flex u-flex-jc--sb mlr-xxl mt-sm ">
@@ -261,6 +258,7 @@
           <AllProducts 
             v-if="restaurantData"
             :restaurant="restaurantData" 
+            :addProduct="true"
             class ="px-40px"
           />
         </div>

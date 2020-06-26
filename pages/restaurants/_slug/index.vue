@@ -57,6 +57,7 @@
       <div class="menu-info__right u-flex u-flex-fd--r">
         <AllProducts v-if="restaurantData"
         :restaurant="restaurantData" 
+        :addProduct="false"
         />
       </div>
     </div>
