@@ -1,5 +1,5 @@
 <template>
-  <div class="warning" :class="{ open: warningToggle }">
+  <div class="warning" :class="{ open: $store.state.warningToggle }">
     <div class="warning__inner ptb-sm">
       <img src="@/assets/img/warning.svg" alt="warning.svg" />
       <h3 class="fs-md fw-bold mt-sm">Narudžba već u tijeku</h3>
@@ -10,7 +10,9 @@
       <hr />
       <div class="u-flex u-flex-jc--sb plr-xl ptb-sm">
         <nuxt-link to="/restaurants"
-          ><button class="">Natrag na restorane</button></nuxt-link
+          ><button @click="$store.commit('closeWarning')" class="">
+            Natrag na restorane
+          </button></nuxt-link
         >
         <nuxt-link :to="this.redirectRoute"
           ><button class="btn btn--primary">
@@ -25,7 +27,6 @@
 <script>
 export default {
   props: {
-    warningToggle: false,
     redirectRoute: ''
   }
 }

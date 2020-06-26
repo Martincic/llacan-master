@@ -30,7 +30,7 @@
             <div class="categories__paragraf fs-base">
               <p>{{ index.toUpperCase() }}</p>
             </div>
-        </div>
+          </div>
 
           <div
             class="categories__paragraf fs-base"
@@ -55,9 +55,10 @@
       </div>
 
       <div class="menu-info__right u-flex u-flex-fd--r">
-        <AllProducts v-if="restaurantData"
-        :restaurant="restaurantData" 
-        :addProduct="false"
+        <AllProducts
+          v-if="restaurantData"
+          :restaurant="restaurantData"
+          :addProduct="false"
         />
       </div>
     </div>
@@ -75,7 +76,11 @@
           <p @click="openFooter">{{ ordersInfo }}</p>
         </div>
         <div class="footer-components__right ptb-xs plr-xs">
-          <button @click="createOrder" class="btn btn-menu btn-button-new">
+          <button
+            type="button"
+            @click="createOrder"
+            class="btn btn-menu btn-button-new"
+          >
             Nova narudžba
           </button>
           <!-- :to="`/restaurants/${restaurantData.slug}/order`" -->
@@ -114,10 +119,7 @@
         </div>
       </collapse-transition>
     </div>
-    <Warning
-      :warningToggle="this.warningToggle"
-      :redirectRoute="this.routeToOrder"
-    />
+    <Warning :redirectRoute="this.routeToOrder" />
   </section>
 </template>
 
@@ -131,7 +133,7 @@ export default {
   components: {
     CollapseTransition,
     Warning,
-    AllProducts,
+    AllProducts
   },
 
   data() {
@@ -140,12 +142,10 @@ export default {
       isLoading: true,
       showFooter: false,
       activeOrders: [],
-      warningToggle: false,
       finalSlug: '',
       routeToOrder: ''
     }
   },
-
   methods: {
     openFooter() {
       this.showFooter = !this.showFooter
@@ -177,7 +177,7 @@ export default {
       if (this.orderIsActive() == false) {
         this.postOrder()
       } else {
-        this.warningToggle = true
+        this.$store.commit('warningToggle')
         this.routeToOrder = '/orders/' + this.finalSlug
         //TODO: this.$router.push('/orders/' + this.finalSlug)
       }
@@ -207,6 +207,11 @@ export default {
         })
         console.log(err)
       })
+  },
+  watch: {
+    $route(to, from) {
+      this.$store.commit('closeWarning')
+    }
   },
   mounted() {},
   computed: {

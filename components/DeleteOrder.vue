@@ -1,5 +1,5 @@
 <template>
-  <div class="warning" :class="{ open: warningToggle }">
+  <div class="warning" :class="{ open: $store.state.errorToggle }">
     <div class="warning__inner ptb-sm">
       <img src="@/assets/img/deleteOrder.svg" alt="deleteOrder.svg" />
       <h3 class="fs-md fw-bold mt-sm">Želite li otkazati narudžbu?</h3>
@@ -9,7 +9,7 @@
       <p class="fs-base mt-sm">Ps. Ostati ćete llačni</p>
       <hr />
       <div class="u-flex u-flex-jc--sb plr-xl ptb-sm">
-        <button @click="this.warningToggle = false" class="">
+        <button type="button" @click="$store.commit('errorToggle')" class="">
           Natrag na narudžbu
         </button>
         <button @click="removeOrder" class="btn btn--primary">Otkaži</button>
@@ -23,7 +23,7 @@ export default {
   methods: {
     removeOrder() {
       this.$axios
-        .delete('/orders/' + this.orderSlug)
+        .delete(process.env.baseApiUrl + '/orders/' + this.orderSlug)
         .then(res => {
           response = res.data
           console.log(response)
@@ -34,10 +34,7 @@ export default {
         })
     }
   },
-  props: {
-    warningToggle: false,
-    orderSlug: ''
-  }
+  props: ['orderSlug']
 }
 </script>
 
