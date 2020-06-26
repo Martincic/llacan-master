@@ -59,33 +59,32 @@
           <div class="my-choice-orders__others ptb-sm pl-sm">
             <h1>Ostali ({{this.order.user_order.length}})</h1>
           </div>
-          <div class="my-choice-orders__allOrders u-flex u-flex-fd--r u-flex-jc--sb border-box">
-            <div class="my-choice-orders__user pb-sm pl-sm ">
 
-              <p class="user-name fs-base font-normal-sm">Anthony</p>
+          <div v-for="userorder in this.order.user_order" :key="userorder.id" class="my-choice-orders__allOrders u-flex u-flex-fd--r u-flex-jc--sb border-box">
+            <div class="my-choice-orders__user pb-sm pl-sm w-300">
+
+              <p class="user-name fs-base font-normal-sm">{{userorder.username}}</p>
               <!-- <p class="user-name fs-base font-normal-sm "> <span class="profile"><img class="imgUser"></span>Anthony</p> -->
             </div>
 
-            <div class="my-choice-orders__food mr-lg">
-              <h1 class="food__name fs-base font-normal-medium">Hamburger</h1>
-              <p class="food__condements fs-sm font-normal-small">kečap, majoneza, rajčica</p>
+            <div class="my-choice-orders__food u-flex-1">
+              <h1 class="food__name fs-base font-normal-medium">{{userorder.product.name}}</h1>
+              <p class="food__condements fs-sm font-normal-small">
+                <span v-for="condament in userorder.condaments" :key="condament.id">{{condament.name}},&nbsp;</span>
+              </p>
             </div>
-            <div class="my-choice-information__price pr-sm fs-base font-normal-medium">
-              <p>22,00 kn</p>
-
+            <div class="my-choice-information__price pr-sm fs-base font-normal-medium w-100">
+              <p>{{userorder.product.price}} kn</p>
             </div>
-
-
           </div>
 
-
+        
         </div>
         <div class="party u-flex u-flex-fd--c border-box">
           <div class="party__main u-flex u-flex-fd--r u-flex-jc--sb ptb-sm border-box">
             <div class="party-main__food  pl-sm fs-md font-normal-bold u-flex u-flex-fd--r">
               <img class="share" src="~/assets/img/pomes.jpg" />
               <p>Pomes party (0)</p> <img class="share" src="~/assets/img/pomes.jpg" />
-
             </div>
 
             <div class="party-main__button pr-sm font-normal-sm-n fs-base">
@@ -153,7 +152,7 @@
               <p>Ukupno</p>
             </div>
             <div class="price_totalNumber pr-sm ">
-              <p>92,00 kn</p>
+              <p>{{totalPrice}}.00 kn</p>
             </div>
           </div>
 
@@ -168,7 +167,7 @@
         </div>
 
 
-
+<!-- 
         <div class="sendOrder border-box u-flex u-flex-fd--r u-flex-jc--sb ptb-md">
           <div class="sendOrder__information u-flex  u-flex-fd--r u-flex-jc--sb">
             <div class="sendOrder-information__restaurant pl-sm">
@@ -190,7 +189,7 @@
                 narudžbu</button>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div
           class="sendOrder border-box u-flex u-flex-fd--r u-flex-jc--sb ptb-md"
@@ -222,7 +221,7 @@
             <div class="sendOrder-buttons__send pl-sm">
               <button
                 class="btn btn-button btn-send fs-base font-normal-sm-n"
-                @click="modalSend = true"
+                @click="modalStep = 1"
               >
                 Pošalji narudžbu
               </button>
@@ -320,10 +319,10 @@
       <!-- <button @click="modalOpened = false">X</button> -->
     </section>
 
-    <section class="modal-send border-box" v-if="modalSend">
+    <section class="modal-send border-box" v-if="modalStep ===1">
       <div class="modal-send__information">
         <div class="modal-send-information__close u-flex u-flex-jc--fe mt-sm mr-xs">
-          <button class="close pr-sm" @click="modalSend = false">X</button>
+          <button class="close pr-sm" @click="modalStep  = 0">X</button>
         </div>
         <div class="modal-send-information__warn u-flex u-flex-jc--c u-flex-ai--c pb-xs">
           <img class="share pl-xs pt-xs" src="~/assets/img/yellowRectangle.jpg" />
@@ -335,25 +334,6 @@
           <p>Jeste li sigurni da želite potvrditi narudžbu? Dodatna izmjena </p>
           <p>narudžbe neće biti moguća!</p>
         </div>
-        <div
-          class="modal-send-information__warn u-flex u-flex-jc--c u-flex-ai--c pb-xs"
-        >
-          <img
-            class="share pl-xs pt-xs"
-            src="~/assets/img/yellowRectangle.jpg"
-          />
-        </div>
-        <div
-          class="modal-send-information__title u-flex u-flex-jc--c u-flex-ai--c ptb-xs"
-        >
-          <h3>Potvrdi narudžbu?</h3>
-        </div>
-        <div
-          class="modal-send-information__paragraf u-flex u-flex-jc--c u-flex-ai--c mlr-lg u-flex-fd--c"
-        >
-          <p>Jeste li sigurni da želite potvrditi narudžbu? Dodatna izmjena</p>
-          <p>narudžbe neće biti moguća!</p>
-        </div>
       </div>
 
       </div>
@@ -362,32 +342,22 @@
 
       <div class="model-send__buttons u-flex u-flex-fd--r u-flex-jc--c">
         <div class="model-send-buttons__back">
-          <button class="btn pr-md fc-base font-normal-sm-n"><span class="icon-back-icon"></span>Natrag</button>
+          <button @click="modalStep--" class="btn pr-md fc-base font-normal-sm-n"><span class="icon-back-icon"></span>Natrag</button>
 
         </div>
 
         <div class="model-send-buttons__accept pl-md">
           <button class="btn btn-button btn-send btn-send-padding fs-base font-normal-sm-n"
-            @click="modalAccept = true">Pošalji narudžbu</button>
-
-        <div class="model-send-buttons__accept pl-md">
-          <button
-            class="btn btn-button btn-send btn-send-padding fs-base font-normal-sm-n"
-            @click="modalAccept = true"
-          >
-            Pošalji narudžbu
-          </button>
-        </div>
-
+            @click="modalStep = 2">Pošalji narudžbu</button>
       </div>
       </div>
 
     </section>
 
-    <section class="modal-send border-box" v-if="modalAccept">
+    <section class="modal-send border-box" v-if="modalStep === 2">
       <div class="modal-send__information">
         <div class="modal-send-information__close u-flex u-flex-jc--fe mt-sm mr-xs">
-          <button class="close pr-sm" @click="modalAccept = false">X</button>
+          <button class="close pr-sm" @click="modalStep = 0">X</button>
         </div>
         <div class="modal-send-information__warn u-flex u-flex-jc--c u-flex-ai--c pb-xs">
           <img class="share pl-xs pt-xs" src="~/assets/img/yellowRectangle.jpg" />
@@ -403,7 +373,7 @@
 
       <div class="model-send__buttons u-flex u-flex-fd--r u-flex-jc--c">
         <div class="model-send-buttons__back">
-          <button class="btn pr-md fc-base font-normal-sm-n"><span class="icon-back-icon"></span>Natrag</button>
+          <button @click="modalStep--" class="btn pr-md fc-base font-normal-sm-n"><span class="icon-back-icon"></span>Natrag</button>
 
         </div>
         <div class="model-send-buttons__accept pl-md">
@@ -435,8 +405,10 @@
         showOpen: false,
         modalSend: false,
         modalAccept: false,
+        modalStep:0,
         order: [],
-        isLoading: true
+        isLoading: true,
+        totalPrice: 0,
       }
     },
     methods: {
@@ -452,14 +424,26 @@
     async beforeCreate() {
         const order = await this.$axios.$get(process.env.baseApiUrl + `orders/${this.$route.params.slug}`)
         this.order = order.data
+
+        this.order.user_order.forEach((singleOrder) => {
+          this.totalPrice += parseInt(singleOrder.product.price.split('.',1)[0])
+          console.log(parseInt(singleOrder.product.price.split('.',1)[0]))
+        })
+
         this.isLoading = false
-        console.log(this.order)
     }
   }
 </script>
 
 <style scoped lang="scss">
-  //proba
+  
+  .w-300{
+    width: 300px;
+  }
+
+  .w-100{
+    width: 100px;
+  }
 
   .probaa {
     position: relative;
@@ -611,9 +595,7 @@
 
   .my-choice-information__price {
     padding-top: 18px;
-    padding-left: 300px;
   }
-
 
   .my-choice-information__delete {
     padding-top: 18px;
@@ -670,14 +652,16 @@
 
   .modal {
     position: absolute;
-    left: 0;
-    top: 0;
+    top:  100px;
+    left: 50%;
+    transform: translateX(-50%);
+  
     width: 50%;
-    height: 100%;
+    // height: 100%;
     background-color: #fff;
     z-index: 3333;
-    margin-top: 150px;
-    margin-left: 150px;
+    padding: 50px 0;
+ 
 
   }
 
