@@ -16,6 +16,7 @@
         </div>
 
       </div>
+      
       <div class="choice u-flex u-flex-fd--c">
         <div class="my-choice u-flex u-flex-fd--c border-box">
           <div class="my_choice__information u-flex u-flex-fd-r u-flex-jc--sb  ptb-sm">
